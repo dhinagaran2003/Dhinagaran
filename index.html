@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aerovant Technologies | Products & Services</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #050816;
+            --bg-alt: #080f26;
+            --accent: #4f46e5;
+            --accent-soft: rgba(79, 70, 229, 0.12);
+            --accent-strong: #facc15;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --card-bg: #0b1220;
+            --border-subtle: rgba(148, 163, 184, 0.3);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.85);
+            --transition-fast: 0.25s ease-out;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at top, #1e293b 0, #020617 45%);
+            color: var(--text);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        /* Layout */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.6));
+            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: conic-gradient(from 160deg, #4f46e5, #22c55e, #06b6d4, #4f46e5);
+            padding: 2px;
+        }
+
+        .logo-mark-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            background: radial-gradient(circle at 30% 0%, #1e293b 0, #020617 55%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-strong);
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-text h1 {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 0.25rem;
+            transition: color var(--transition-fast);
+        }
+
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #4f46e5, #facc15);
+            transition: width var(--transition-fast);
+        }
+
+        nav ul li a:hover {
+            color: #e5e7eb;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6.5rem 1.5rem 4rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-copy h2 {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: clamp(2.4rem, 3.2vw, 3.1rem);
+            line-height: 1.05;
+            margin-bottom: 1rem;
+        }
+
+        .hero-copy h2 span {
+            background: linear-gradient(135deg, #a5b4fc, #facc15);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-copy p {
+            color: #d1d5db;
+            max-width: 32rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.1rem;
+            margin: 1.6rem 0 2.1rem;
+        }
+
+        .badge {
+            border-radius: 999px;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #facc15, #f97316);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+        }
+
+        .btn-primary, .btn-outline {
+            border-radius: 999px;
+            padding: 0.8rem 1.6rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #6366f1, #facc15);
+            color: #020617;
+            box-shadow: 0 18px 38px rgba(37, 99, 235, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.85);
+        }
+
+        .btn-outline {
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text);
+            border: 1px solid rgba(148, 163, 184, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(15, 23, 42, 1);
+            border-color: #e5e7eb;
+            transform: translateY(-1px);
+        }
+
+        .hero-visual {
+            position: relative;
+            border-radius: var(--radius-lg);
+            background: radial-gradient(circle at top, rgba(79, 70, 229, 0.6) 0, rgba(15, 23, 42, 0.95) 45%);
+            padding: 1.4px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .hero-visual-inner {
+            border-radius: calc(var(--radius-lg) - 1px);
+            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.12), transparent 55%), radial-gradient(circle at 100% 100%, rgba(250, 204, 21, 0.2), transparent 55%), #020617;
+            padding: 1.75rem 1.6rem;
+            position: relative;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .orbital {
+            position: absolute;
+            inset: -30%;
+            border-radius: 999px;
+            border: 1px dashed rgba(148, 163, 184, 0.35);
+            transform: rotate(-12deg);
+        }
+
+        .orbital::after {
+            content: "";
+            position: absolute;
+            top: 20%;
+            right: 8%;
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #facc15, #f97316);
+            box-shadow: 0 0 18px rgba(250, 204, 21, 0.7);
+        }
+
+        .hero-visual-main {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        .hero-tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--muted);
+        }
+
+        .hero-highlight {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: 1.3rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.9rem;
+            margin-top: 1.4rem;
+        }
+
+        .hero-stat {
+            border-radius: 0.9rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            padding: 0.7rem 0.8rem;
+        }
+
+        .hero-stat h3 {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .hero-stat p {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        /* Sections */
+        section {
+            margin-top: 4.5rem;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .section-heading h2 {
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            font-size: 1.6rem;
+        }
+
+        .section-heading p {
+            max-width: 26rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .pill {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 0.3rem 0.8rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.7rem;
+        }
+
+        .card {
+            background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.22), rgba(15, 23, 42, 0.98));
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 20px 35px rgba(15, 23, 42, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 50%);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 26px 55px rgba(15, 23, 42, 0.9);
+            border-color: rgba(248, 250, 252, 0.9);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.8rem;
+        }
+
+        .chip {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.65rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--muted);
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .about-copy p {
+            color: #d1d5db;
+            font-size: 0.95rem;
+        }
+
+        .about-list {
+            margin-top: 1.2rem;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .about-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .about-item span {
+            margin-top: 0.22rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #4f46e5, #facc15);
+        }
+
+        .about-panel {
+            border-radius: var(--radius-md);
+            background: linear-gradient(145deg, #020617, #020617);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.95);
+        }
+
+        .about-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.6rem;
+        }
+
+        .about-metric h3 {
+            font-size: 2rem;
+        }
+
+        .about-metric span {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .about-panel p {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 0.6rem;
+        }
+
+        /* Contact */
+        #contact .contact-wrapper {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 2rem;
+        }
+
+        form {
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        input, textarea {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 0.9rem;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            padding: 0.8rem 0.9rem;
+            color: var(--text);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(148, 163, 184, 0.8);
+        }
+
+        input:focus, textarea:focus {
+            border-color: #facc15;
+            box-shadow: 0 0 0 1px rgba(250, 204, 21, 0.4);
+            transform: translateY(-1px);
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            color: var(--muted);
+            display: grid;
+            gap: 0.7rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .contact-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #facc15, #4f46e5);
+        }
+
+        footer {
+            border-top: 1px solid rgba(31, 41, 55, 0.95);
+            background: #020617;
+            color: var(--muted);
+            padding: 1.4rem 1.5rem 1.6rem;
+            margin-top: 3rem;
+        }
+
+        footer .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e5e7eb;
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-visual {
+                max-width: 420px;
+                margin: 0 auto;
+                order: -1;
+            }
+
+            .about, #contact .contact-wrapper {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 720px) {
+            nav ul {
+                display: none;
+            }
+
+            main {
+                padding-inline: 1.1rem;
+            }
+
+            .hero-copy h2 {
+                font-size: 2rem;
+            }
+
+            .hero-visual-inner {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <div class="logo">
+            <div class="logo-mark">
+                <div class="logo-mark-inner">AT</div>
+            </div>
+            <div class="logo-text">
+                <h1>Aerovant</h1>
+                <span>Technologies</span>
+            </div>
+        </div>
+        <ul>
+            <li><a href="#home">Overview</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">Company</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-copy">
+            <p class="hero-subtitle">Product & Service Engineering Studio</p>
+            <h2>
+                Building <span>reliable software systems</span><br>
+                for teams that can’t afford downtime.
+            </h2>
+            <p>
+                Aerovant Technologies partners with ambitious businesses to design, build, and operate cloud‑native products and platforms with enterprise‑grade reliability.
+            </p>
+
+            <div class="hero-meta">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    End‑to‑end delivery
+                </div>
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Product & service focused
+                </div>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">
+                    Start a project
+                </a>
+                <a href="#services" class="btn-outline">
+                    View capabilities
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-visual-inner">
+                <div class="orbital"></div>
+                <div class="hero-visual-main">
+                    <div>
+                        <p class="hero-tagline">Systems that scale with you</p>
+                        <p class="hero-highlight">
+                            From idea to resilient production, with one accountable engineering partner.
+                        </p>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <h3>Product</h3>
+                            <p>Cloud‑native platforms, SaaS, internal tools.</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>Services</h3>
+                            <p>Consulting, architecture, managed delivery.</p>
+                        </div>
+                        <div class="hero-stat">
+                            <h3>Trust</h3>
+                            <p>Security, observability, uptime‑driven culture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="section-heading">
+            <div>
+                <p class="pill">Services</p>
+                <h2>What we deliver as a service</h2>
+            </div>
+            <p>
+                Flexible engagement models that meet you where you are: from greenfield builds to modernising legacy systems and cloud foundations.
+            </p>
+        </div>
+
+        <div class="grid">
+            <article class="card">
+                <p class="card-label">Engineering</p>
+                <h3>Full‑stack product development</h3>
+                <p>
+                    Design, build, and ship production‑ready web and mobile applications using modern, battle‑tested stacks aligned to your roadmap.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Web & API</span>
+                    <span class="chip">Mobile apps</span>
+                    <span class="chip">Design systems</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <p class="card-label">Advisory</p>
+                <h3>Technology & architecture consulting</h3>
+                <p>
+                    Pragmatic guidance on architecture, platform choices, and technical strategy to reduce risk and unlock sustainable velocity.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Architecture reviews</span>
+                    <span class="chip">CTO advisory</span>
+                    <span class="chip">Technical due diligence</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <p class="card-label">Cloud</p>
+                <h3>Cloud platforms & reliability</h3>
+                <p>
+                    Design and operate secure, observable, and cost‑aware cloud foundations with built‑in resilience and automation.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Cloud migration</span>
+                    <span class="chip">DevOps & SRE</span>
+                    <span class="chip">Observability</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="section-heading">
+            <div>
+                <p class="pill">Products</p>
+                <h2>Platforms built at Aerovant</h2>
+            </div>
+            <p>
+                Opinionated products that encode our best practices so your teams can focus on what makes your business unique.
+            </p>
+        </div>
+
+        <div class="grid">
+            <article class="card">
+                <p class="card-label">Cloud Platform</p>
+                <h3>AeroCloud</h3>
+                <p>
+                    A unified cloud management layer for governing environments, deployments, and costs across teams and regions.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Multi‑cloud</span>
+                    <span class="chip">Policy‑driven</span>
+                    <span class="chip">Cost visibility</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <p class="card-label">Intelligence</p>
+                <h3>VantAI</h3>
+                <p>
+                    An applied AI analytics suite that turns operational data into actionable decisions with human‑in‑the‑loop controls.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Predictive analytics</span>
+                    <span class="chip">Custom models</span>
+                    <span class="chip">Dashboards</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <p class="card-label">Productivity</p>
+                <h3>TechSuite</h3>
+                <p>
+                    An integrated toolkit for engineering teams, combining project visibility, documentation, and release workflows.
+                </p>
+                <div class="chip-row">
+                    <span class="chip">Workflows</span>
+                    <span class="chip">Docs</span>
+                    <span class="chip">Release orchestration</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-heading">
+            <div>
+                <p class="pill">Company</p>
+                <h2>About Aerovant Technologies</h2>
+            </div>
+            <p>
+                A product‑minded engineering partner with the discipline of a services firm and the curiosity of a startup lab.
+            </p>
+        </div>
+
+        <div class="about">
+            <div class="about-copy">
+                <p>
+                    Aerovant Technologies is a product and service‑based software company focused on building dependable, long‑lived systems. 
+                    We combine engineering rigour, modern cloud practices, and a design‑first mindset to deliver outcomes that compound over time.
+                </p>
+                <div class="about-list">
+                    <div class="about-item">
+                        <span></span>
+                        <p>End‑to‑end ownership: from discovery and UX to deployment and ongoing iteration.</p>
+                    </div>
+                    <div class="about-item">
+                        <span></span>
+                        <p>Cloud‑native foundations: security, observability, and operability from day one.</p>
+                    </div>
+                    <div class="about-item">
+                        <span></span>
+                        <p>Small, senior teams that integrate directly with your product and leadership groups.</p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="about-panel">
+                <div class="about-metric">
+                    <h3>Product & Service</h3>
+                    <span>Focus</span>
+                </div>
+                <p>
+                    We intentionally operate as both a product studio and a services partner. This dual focus keeps our teams close to real‑world usage while giving clients access to reusable accelerators, components, and patterns.
+                </p>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-heading">
+            <div>
+                <p class="pill">Contact</p>
+                <h2>Let’s discuss your roadmap</h2>
+            </div>
+            <p>
+                Share a little about your product, timelines, and constraints. We’ll respond with a clear next step, not a sales script.
+            </p>
+        </div>
+
+        <div class="contact-wrapper">
+            <form>
+                <input type="text" name="name" placeholder="Your name">
+                <input type="email" name="email" placeholder="Work email">
+                <input type="text" name="company" placeholder="Company">
+                <textarea name="message" placeholder="How can we help? Briefly describe your product, stack, and timeline."></textarea>
+                <button type="submit" class="btn-primary">Submit enquiry</button>
+            </form>
+
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <div class="contact-dot"></div>
+                    <div>
+                        <strong>Project enquiries</strong><br>
+                        hello@aerovant.tech
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-dot"></div>
+                    <div>
+                        <strong>Partnerships</strong><br>
+                        partners@aerovant.tech
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <div class="contact-dot"></div>
+                    <div>
+                        <strong>Location</strong><br>
+                        Operating remotely with clients across regions.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <span>&copy; 2026 Aerovant Technologies. All rights reserved.</span>
+        <span><a href="#home">Back to top</a></span>
+    </div>
+</footer>
+
+</body>
+</html>
